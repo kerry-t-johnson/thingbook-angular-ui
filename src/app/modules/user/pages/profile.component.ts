@@ -20,7 +20,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.userService.onUserStatus()
+        this.userService.subscribeLoggedInUser()
             .pipe(takeUntil(this.destroy$))
             .subscribe((user: any) => {
                 this.user = user;

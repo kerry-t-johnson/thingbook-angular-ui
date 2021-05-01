@@ -23,6 +23,7 @@ import {
 } from '@nebular/theme';
 
 import { UserModule } from './modules/user/user.module';
+import { EnvironmentModule } from './modules/environment/environment.module';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,7 @@ import { UserModule } from './modules/user/user.module';
     CoreModule.forRoot(),
     ThemeModule.forRoot(),
     UserModule.forRoot(),
-
+    EnvironmentModule.forRoot(),
   ],
   bootstrap: [AppComponent],
   providers: []

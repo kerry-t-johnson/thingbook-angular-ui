@@ -1,8 +1,7 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NbPasswordAuthStrategy, NbAuthModule } from '@nebular/auth';
+import { NbPasswordAuthStrategy, NbAuthModule, NbAuthJWTToken } from '@nebular/auth';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { LoginInterceptor } from '../../user.interceptors';
 import { RouterModule } from '@angular/router';
 import { UserProfileComponent } from './pages/profile.component';
 import { ThemeModule } from '../../@theme/theme.module';
@@ -36,7 +35,6 @@ export class UserModule {
     return [{
       ngModule: UserModule,
       providers: [
-        { provide: HTTP_INTERCEPTORS, useClass: LoginInterceptor, multi: true }
       ],
     },
     NbAuthModule.forRoot({
@@ -44,6 +42,10 @@ export class UserModule {
         NbPasswordAuthStrategy.setup({
           name: 'email',
           baseEndpoint: 'http://localhost:3000/api/v1/user',
+          token: {
+            class: NbAuthJWTToken,
+            key: 'authorization',
+          },
           login: {
             endpoint: '/login',
             requireValidToken: false,

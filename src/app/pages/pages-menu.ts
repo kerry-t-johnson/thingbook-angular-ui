@@ -218,14 +218,9 @@ export const MENU_ITEMS: NbMenuItem[] = [
     ],
   },
   {
-    title: 'Miscellaneous',
+    title: 'Development',
     icon: 'shuffle-2-outline',
-    children: [
-      {
-        title: '404',
-        link: '/pages/miscellaneous/404',
-      },
-    ],
+    link: '/pages/development/list',
   },
   {
     title: 'Auth',

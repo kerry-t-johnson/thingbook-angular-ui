@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NbMediaBreakpointsService, NbMenuService, NbSidebarService, NbThemeService } from '@nebular/theme';
+import { NbAuthJWTToken, NbAuthService } from '@nebular/auth';
 
 import { LayoutService } from '../../../@core/utils';
 import { map, takeUntil } from 'rxjs/operators';
@@ -29,7 +30,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   userMenu = [
     { title: 'Profile', icon: 'person-outline', link: 'pages/user/profile', },
-    { title: 'Log out' },
+    { title: 'Log out', link: 'auth/logout' },
   ];
 
   constructor(private sidebarService: NbSidebarService,
@@ -43,7 +44,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.currentTheme = this.themeService.currentTheme;
 
-    this.userService.onUserStatus()
+    this.userService.subscribeLoggedInUser()
       .pipe(takeUntil(this.destroy$))
       .subscribe((user: any) => {
         this.user = user;

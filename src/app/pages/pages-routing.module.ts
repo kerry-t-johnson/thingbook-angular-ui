@@ -74,9 +74,9 @@ const routes: Routes = [{
         .then(m => m.TablesModule),
     },
     {
-      path: 'miscellaneous',
-      loadChildren: () => import('./miscellaneous/miscellaneous.module')
-        .then(m => m.MiscellaneousModule),
+      path: 'development',
+      loadChildren: () => import('../modules/development/development.module')
+        .then(m => m.DevelopmentModule),
     },
     {
       path: '',
